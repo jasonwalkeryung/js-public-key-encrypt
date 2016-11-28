@@ -2,6 +2,10 @@
   "name": "js-public-key-encrypt",
   "version": "1.0.0",
   "description": "Encrypt passwords with a public key on the front-end.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jasonwalkeryung/js-public-key-encrypt"
+  },
   "engines": {
     "node": ">= 6.8.1"
   },
