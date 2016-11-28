@@ -1,0 +1,55 @@
+<html>
+<head>
+  <title>Public key encryption example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/libsodium-wrappers/0.4.2/sodium.min.js"></script>
+  <style>
+  body {
+    font-family: sans-serif;
+  }
+  input#password {
+    margin: 10px;
+  }
+  .encrypted {
+    font-family: monospace;
+  }
+  .public-key {
+    font-family: monospace;
+  }
+  </style>
+</head>
+<body>
+  <div>
+    <p>
+      This is an example of using public key encryption on the front end.
+      In practice, we only need to apply the encryption upon submitting the form.
+      I would also place the plain text input outside of the form, so it doesn't
+      get submitted.
+    </p>
+    <p><label for="password">Text to encrypt</label><input type="text" id="password"/></p>
+    <p>Encrypted pw: <span class="encrypted"></span></p>
+    <!-- Diagnostic instructions. Don't put this on the form. -->
+    <p class="instructions">To decrypt: <tt>node decrypt.js <span class="encrypted">&lt;encrypted&gt;</span> <span class="public-key"></span> &lt;private key&gt;</tt></p>
+  </div>
+  <div>Public key: <span class="public-key"></span></div>
+  <script>
+    // The public key from generate_keys.js
+    var public_key = "f22aa4a9ec6ff1e591d83dc97d8cdfceea8f7cd7453281e07672d415b9637454";
+    var encrypt = function(txt) {
+      var encrypted = "<encrypted>";
+      if (txt) {
+        encrypted = sodium.crypto_box_seal(txt, sodium.from_hex(public_key));
+        encrypted = sodium.to_hex(encrypted);
+      }
+      $('.encrypted').text(encrypted);
+    }
+
+    $('.public-key').text(public_key);
+    $('#password').on('keyup', function() {
+      encrypt($(this).val());
+    });
+
+    encrypt();
+  </script>
+</body>
+</html>

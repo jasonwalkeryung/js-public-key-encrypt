@@ -1,0 +1,19 @@
+{
+  "name": "js-public-key-encrypt",
+  "version": "1.0.0",
+  "description": "Encrypt passwords with a public key on the front-end.",
+  "engines": {
+    "node": ">= 6.8.1"
+  },
+  "dependencies": {
+    "config": "^1.24.0",
+    "libsodium": "^0.4.8",
+    "libsodium-wrappers": "^0.4.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jasonwalkeryung",
+  "license": "ISC"
+}
